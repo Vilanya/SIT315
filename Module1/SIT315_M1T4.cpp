@@ -1,6 +1,4 @@
 // https://www.electrosoftcloud.com/en/pcint-interrupts-on-arduino/
-// https://www.youtube.com/watch?v=2kr5A350H7E
-// 
 const uint16_t t1_load = 0;
 const uint16_t t1_comp = 31250;
 
@@ -58,7 +56,8 @@ ISR(PCINT2_vect)
   
 } 
 
-void trigger(){
+ISR(TIMER1_COMPA_vect)
+{
   if(state1 == HIGH)
   {
     Serial.println("PIR1:HIGH");
@@ -79,11 +78,6 @@ void trigger(){
     digitalWrite(led3,HIGH);
   }
   digitalWrite(led3,LOW);
-}
-
-ISR(TIMER1_COMPA_vect)
-{
-  trigger();
 }
 
 
